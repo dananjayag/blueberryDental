@@ -106,7 +106,10 @@ p {
 
 /* Buttons */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     font-weight: 600;
@@ -208,6 +211,75 @@ header {
     padding: 1rem 0;
 }
 
+/* Header Icons: Mobile Only */
+/* Header Icons & Visibility */
+.header-icons {
+    display: none !important;
+}
+
+/* Base Mobile */
+@media (max-width: 768px) {
+    header .logo h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .header-icons {
+        display: flex !important;
+    }
+}
+
+/* Desktop Header Fixes (Prevent Crowding) */
+@media (min-width: 769px) {
+    header .container {
+        gap: 2rem;
+        /* Separate Logo from Nav */
+    }
+
+    nav ul {
+        gap: 1.5rem !important;
+        /* Adjusted Link Spacing */
+    }
+
+    /* Group Buttons Properly */
+    nav ul li:last-child {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    /* Compact Buttons */
+    nav .btn {
+        padding: 0.4rem 1rem !important;
+        /* Smaller Size */
+        font-size: 0.9rem !important;
+        white-space: nowrap;
+    }
+}
+
+/* Button Transitions (Gemini-like smooth border) */
+.btn {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.15);
+}
+
+/* Specific Gradient Border Effect for Outline Buttons */
+.btn-secondary {
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-secondary:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
 nav ul {
     gap: 2rem;
 }
@@ -228,6 +300,21 @@ nav a:hover {
     min-height: 80vh;
     display: flex;
     align-items: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+        /* Significantly smaller for mobile */
+        line-height: 1.3;
+    }
 }
 
 /* Animations */
@@ -277,6 +364,7 @@ nav a:hover {
         display: block;
         font-size: 1.5rem;
         cursor: pointer;
+        color: var(--primary-color);
     }
 
     .hidden-desktop {
@@ -371,4 +459,62 @@ footer h6 {
 
 footer a {
     color: white;
+}
+
+/* Mobile Bottom Action Bar */
+.mobile-action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Hidden on desktop */
+    z-index: 10000;
+    border-top: 1px solid #f0f0f0;
+}
+
+.action-bar-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-call {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.btn-direction {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-call:active,
+.btn-direction:active {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .mobile-action-bar {
+        display: flex;
+    }
+
+    /* Hide old floating button */
+    .floating-call-btn {
+        display: none !important;
+    }
+
+    /* Make footer padding larger to avoid overlap */
+    footer {
+        padding-bottom: 80px !important;
+    }
 }
